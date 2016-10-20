@@ -1,1 +1,1 @@
-# miui_v7_blade_l3_replace
+# miui_honor_3c_lite_replace
