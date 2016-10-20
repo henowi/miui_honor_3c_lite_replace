@@ -1,0 +1,15 @@
+#!/system/bin/sh
+(
+ until busybox test `getprop sys.boot_completed` -eq "1"
+ do
+   sleep 5
+ done
+#включаем режим флешки
+setprop persist.sys.usb.config mass_storage,adb
+
+#подключаем внутреннюю память
+echo /dev/block/vold/179:97 > /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun0/file
+
+#подключаем внешнюю память
+echo /dev/block/vold/179:8 > /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun1/file
+)&
